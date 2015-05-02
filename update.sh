@@ -23,3 +23,5 @@ for tag in $DOCKER_VERSION_TAGS; do
 		git tag $tag
 	fi
 done
+
+git push --tags
