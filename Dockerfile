@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         xz-utils \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV VERSION 1.6.0
-RUN curl -L -o /usr/local/bin/docker https://get.docker.com/builds/Linux/x86_64/docker-${VERSION} \
+ENV VERSION dev
+RUN curl -L -o /usr/local/bin/docker https://master.dockerproject.com/linux/amd64/docker \
     && chmod +x /usr/local/bin/docker
 
 RUN curl -L -o /dind https://raw.githubusercontent.com/docker/docker/master/hack/dind \
