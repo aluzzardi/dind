@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -e
+
+cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
 DOCKER_REPOSITORY=https://github.com/docker/docker.git
 

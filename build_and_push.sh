@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -e
+
+cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
 # Build tags passed in the command line or all tags.
 TAGS=${@:-`git tag | sort`}
