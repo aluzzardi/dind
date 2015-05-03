@@ -4,6 +4,10 @@
 TAGS=${@:-`git tag | sort`}
 
 DOCKER_IMAGE=${DOCKER_IMAGE:-dockerswarm/dind}
+CURRENT_BRANCH=$(git symbolic-ref HEAD | sed s:refs/heads/::)
+
+# Go back to the current branch when the script finishes.
+trap "git checkout $CURRENT_BRANCH" EXIT
 
 function tag_to_image() {
 	local version=$(echo $tag | sed "s/^v//")
