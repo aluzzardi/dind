@@ -8,5 +8,5 @@ trap "run git checkout $CURRENT_BRANCH" EXIT
 
 function run() {
 	echo "++ $@"
-	$@
+	"$@"
 }
