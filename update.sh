@@ -3,6 +3,8 @@ set -e
 
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
+. utils.sh
+
 DOCKER_REPOSITORY=https://github.com/docker/docker.git
 
 # Docker version tags starting from v1.0.0 excluding RCs
@@ -16,15 +18,15 @@ function tag_exists() {
 
 function update_to() {
 	local version=$(echo $1 | sed "s/^v//")
-	sed -i "s/^ENV VERSION.*/ENV VERSION $version/" Dockerfile
-	git commit -m "Updated to $version" Dockerfile
+	run sed -i "s/^ENV VERSION.*/ENV VERSION $version/" Dockerfile
+	run git commit -m "Updated to $version" Dockerfile
 }
 
 for tag in $DOCKER_VERSION_TAGS; do
 	if ! tag_exists $tag; then
 		update_to $tag
-		git tag $tag
+		run git tag $tag
 	fi
 done
 
-git push --tags
+run git push --tags
