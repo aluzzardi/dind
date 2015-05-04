@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         procps \
         e2fsprogs \
         xz-utils \
-        git \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ENV VERSION 1.6.0
