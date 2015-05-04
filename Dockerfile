@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         xz-utils \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV VERSION 1.3.3
+ENV VERSION 1.4.0
 RUN curl -L -o /usr/local/bin/docker https://get.docker.com/builds/Linux/x86_64/docker-${VERSION} \
     && chmod +x /usr/local/bin/docker
 
