@@ -18,7 +18,7 @@ function tag_exists() {
 
 function update_to() {
 	local version=$(echo $1 | sed "s/^v//")
-	run sed -i "s/^ENV VERSION.*/ENV VERSION $version/" Dockerfile
+	sed -i "s/^ENV VERSION.*/ENV VERSION $version/" Dockerfile
 	run git commit -m "Updated to $version" Dockerfile
 }
 
