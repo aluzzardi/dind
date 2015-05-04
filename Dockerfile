@@ -20,4 +20,6 @@ RUN curl -L -o /usr/local/bin/docker https://get.docker.com/builds/Linux/x86_64/
 RUN curl -L -o /dind https://raw.githubusercontent.com/docker/docker/master/hack/dind \
     && chmod +x /dind
 
+VOLUME /var/lib/docker
+
 ENTRYPOINT ["/dind"]
