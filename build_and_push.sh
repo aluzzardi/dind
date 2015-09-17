@@ -5,8 +5,9 @@ cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
 . utils.sh
 
-# Build tags passed in the command line or all tags.
-TAGS=${@:-`git tag | sort`}
+# Build tags passed in the command line or all tags starting at min version
+MIN_VERSION_TAG=${MIN_VERSION_TAG-"v1.8.2"}
+TAGS=${@:-$(git tag | tags_after $MIN_VERSION_TAG)}
 
 DOCKER_IMAGE=${DOCKER_IMAGE:-dockerswarm/dind}
 
