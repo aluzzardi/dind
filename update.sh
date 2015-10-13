@@ -7,10 +7,15 @@ cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
 DOCKER_REPOSITORY=https://github.com/docker/docker.git
 
-# Docker version tags starting from v1.0.0 excluding RCs
-DOCKER_VERSION_TAGS=$(git ls-remote --tags $DOCKER_REPOSITORY \
-	| cut -d$'\t' -f2 | cut -d'/' -f3 | grep -v "\^{}" \
-	| grep "^v1\." | grep -v -- "-rc" | sort)
+MIN_DOCKER_VERSION_TAG=${MIN_DOCKER_VERSION_TAG-"v1.8.2"}
+
+# Docker version tags starting from MIN_VERSION
+DOCKER_VERSION_TAGS=$(
+    git ls-remote --tags $DOCKER_REPOSITORY v\* |
+    awk -F'/' '{ print $3 }' |
+    grep -v "\^{}" |
+    tags_after $MIN_DOCKER_VERSION_TAG
+)
 
 function tag_exists() {
 	git rev-parse $1 >/dev/null 2>&1
