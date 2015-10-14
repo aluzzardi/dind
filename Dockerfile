@@ -13,8 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ENV VERSION 1.9.0-rc1
-RUN curl -L -o /usr/local/bin/docker https://get.docker.com/builds/Linux/x86_64/docker-${VERSION} \
-    && chmod +x /usr/local/bin/docker
+COPY get_docker.sh /get_docker.sh
+RUN bash /get_docker.sh
 
 RUN curl -L -o /dind https://raw.githubusercontent.com/docker/docker/master/hack/dind \
     && chmod +x /dind
