@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         xz-utils \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV VERSION 1.9.0-rc4
+ENV VERSION 1.9.0-rc5
 COPY get_docker.sh /get_docker.sh
 RUN bash /get_docker.sh
 
