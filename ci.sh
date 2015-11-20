@@ -40,4 +40,5 @@ fi
 
 echo "Building version $latest"
 ./build.sh $latest
+./test.sh $image
 docker push $image
