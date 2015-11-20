@@ -22,8 +22,8 @@ $ docker run --rm --privileged -it dockerswarm/dind:1.0.0 docker version
 Client version: 1.0.0
 ```
 
-## Tools
+## Build
 
-## build_and_push.sh
-
-Build and push the given Docker images. If not arguments are given, it will build and push **all** images.
+```
+./build.sh VERSION
+```
