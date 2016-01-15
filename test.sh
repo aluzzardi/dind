@@ -22,13 +22,17 @@ docker run -d --privileged \
 
 
 function on_exit() {
+    unset DOCKER_HOST
     if [[ "$?" != "0" ]]; then
         docker logs "$BUILD_ID" 2>&1 | tail -n 100
     fi
     docker rm -vf "$BUILD_ID"
 }
-
 trap "on_exit" exit
 
 ip=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' $BUILD_ID)
-DOCKER_HOST=tcp://$ip:2375 docker ps
+export DOCKER_HOST=tcp://$ip:2375
+
+timeout 60 ./wait_on_daemon
+
+docker ps
