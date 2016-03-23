@@ -15,6 +15,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV VERSION dev
 RUN curl -L -o /usr/local/bin/docker https://master.dockerproject.com/linux/amd64/docker \
     && chmod +x /usr/local/bin/docker
+RUN curl -L -o /usr/local/bin/docker-runc https://master.dockerproject.com/linux/amd64/docker-runc \
+    && chmod +x /usr/local/bin/docker-runc
+RUN curl -L -o /usr/local/bin/docker-containerd https://master.dockerproject.com/linux/amd64/docker-containerd \
+    && chmod +x /usr/local/bin/docker-containerd
+RUN curl -L -o /usr/local/bin/docker-containerd-shim https://master.dockerproject.com/linux/amd64/docker-containerd-shim \
+    && chmod +x /usr/local/bin/docker-containerd-shim
 
 RUN curl -L -o /dind https://raw.githubusercontent.com/docker/docker/master/hack/dind \
     && chmod +x /dind
