@@ -12,7 +12,6 @@ else
     HOST=get.docker.com
 fi
 
-curl -L -f -o /usr/local/bin/docker \
-    https://$HOST/builds/Linux/x86_64/docker-${VERSION}
-
-chmod +x /usr/local/bin/docker
+curl -L -f  \
+    https://$HOST/builds/Linux/x86_64/docker-${VERSION}.tgz \
+    | tar -xz
