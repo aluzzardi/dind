@@ -15,3 +15,5 @@ fi
 curl -L -f  \
     https://$HOST/builds/Linux/x86_64/docker-${VERSION}.tgz \
     | tar -xz
+mv docker/* /usr/bin
+rmdir docker
