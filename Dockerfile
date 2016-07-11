@@ -23,6 +23,8 @@ RUN curl -L -o /usr/local/bin/docker-containerd https://master.dockerproject.com
     && chmod +x /usr/local/bin/docker-containerd
 RUN curl -L -o /usr/local/bin/docker-containerd-shim https://master.dockerproject.com/linux/amd64/docker-containerd-shim \
     && chmod +x /usr/local/bin/docker-containerd-shim
+RUN curl -L -o /usr/local/bin/docker-proxy https://master.dockerproject.com/linux/amd64/docker-proxy \
+    && chmod +x /usr/local/bin/docker-proxy
 
 RUN curl -L -o /dind https://raw.githubusercontent.com/docker/docker/master/hack/dind \
     && chmod +x /dind
