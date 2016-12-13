@@ -1,14 +1,14 @@
 #!/bin/bash
 #
-# Check for new docker versions. Build and push an image for the latest
-# version if it doesn't already exist.
+# Check for new docker versions. Build and push an image for any
+# version that doesn't already exist.
 #
 
 set -e
 
 DOCKER_REPOSITORY=https://github.com/docker/docker.git
 
-MIN_DOCKER_VERSION_TAG=${MIN_DOCKER_VERSION_TAG-"v1.8.2"}
+MIN_DOCKER_VERSION_TAG=${MIN_DOCKER_VERSION_TAG-"v1.12.0"}
 
 DOCKER_IMAGE=${DOCKER_IMAGE:-dockerswarm/dind}
 
@@ -22,23 +22,23 @@ function tags_after() {
 }
 
 # Docker version tags starting from MIN_VERSION
-latest=$(
+tags=$(
     git ls-remote --tags $DOCKER_REPOSITORY v\* |
     awk -F'/' '{ print $3 }' |
     grep -v "\^{}" |
     tags_after $MIN_DOCKER_VERSION_TAG |
-    tail -1 |
     sed "s/^v//"
 )
 
-image="${DOCKER_IMAGE}:${latest}"
+tags=$(python tags_compare.py "$tags")
 
-if docker pull $image; then
-    echo "Version $latest already exists."
-    exit
-fi
+for version in $tags
+do
+    echo "Building version $version"
+    image="${DOCKER_IMAGE}:${version}"
+    ./build.sh $version
+    ./test.sh $image
+    docker push $image
+done
 
-echo "Building version $latest"
-./build.sh $latest
-./test.sh $image
-docker push $image
+
