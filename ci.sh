@@ -6,7 +6,7 @@
 
 set -e
 
-DOCKER_REPOSITORY=https://github.com/docker/docker.git
+DOCKER_REPOSITORY=https://github.com/docker/docker-ce.git
 
 MIN_DOCKER_VERSION_TAG=${MIN_DOCKER_VERSION_TAG-"v1.12.0"}
 
