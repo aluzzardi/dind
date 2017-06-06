@@ -18,7 +18,7 @@ TEST_HOST=tcp://0.0.0.0:2375
 docker run -d --privileged \
     --name $BUILD_ID \
     $DOCKER_IMAGE \
-    docker daemon -H $TEST_HOST $DOCKER_DAEMON_ARGS
+    dockerd -H $TEST_HOST $DOCKER_DAEMON_ARGS
 
 
 function on_exit() {
