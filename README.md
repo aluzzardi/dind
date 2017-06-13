@@ -22,13 +22,8 @@ $ docker run --rm --privileged -it dockerswarm/dind:1.0.0 docker version
 Client version: 1.0.0
 ```
 
-## Tools
+## Build
 
-### update.sh
-
-For every tag in `docker/docker` that is not present in this repository, create a corresponding tag with an updated
-`Dockerfile`.
-
-## build_and_push.sh
-
-Build and push the given Docker images. If not arguments are given, it will build and push **all** images.
+```
+./build.sh VERSION
+```
