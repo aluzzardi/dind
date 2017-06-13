@@ -12,15 +12,9 @@ function is_stable() {
 }
 
 function arch_suffix() {
-    # Anything > 17.06.0-ce-rc1 needs the arch suffix in the archive name
-    local year=$(echo $1 | cut -d. -f1)
-    local month=$(echo $1 | cut -d. -f2)
-    if (( $month > 6  && $year >= 17 )); then
+    # 17.06.0-ce-rc2 and rc3 need the arch suffix in the archive name
+    if [[ $1 == '17.06.0-ce-rc2' || $1 == '17.06.0-ce-rc3' ]]; then
         echo "-x86_64"
-    elif (( $month == 6  && $year == 17 )); then
-        local patch=$(echo $1 | cut -d. -f3 | cut -d- -f1)
-        local rc=$(echo $1 | cut -d- -f3)
-        [[ $rc == "rc1" && $patch == "0" ]] || echo "-x86_64"
     fi
 }
 
