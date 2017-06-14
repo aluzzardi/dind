@@ -13,17 +13,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ENV VERSION dev
-RUN curl -L -o /usr/local/bin/docker https://master.dockerproject.org/linux/amd64/docker \
+RUN curl -L -o /usr/local/bin/docker https://master.dockerproject.org/linux/x86_64/docker \
     && chmod +x /usr/local/bin/docker
-RUN curl -L -o /usr/local/bin/dockerd https://master.dockerproject.org/linux/amd64/dockerd \
+RUN curl -L -o /usr/local/bin/dockerd https://master.dockerproject.org/linux/x86_64/dockerd \
     && chmod +x /usr/local/bin/dockerd
-RUN curl -L -o /usr/local/bin/docker-runc https://master.dockerproject.org/linux/amd64/docker-runc \
+RUN curl -L -o /usr/local/bin/docker-runc https://master.dockerproject.org/linux/x86_64/docker-runc \
     && chmod +x /usr/local/bin/docker-runc
-RUN curl -L -o /usr/local/bin/docker-containerd https://master.dockerproject.org/linux/amd64/docker-containerd \
+RUN curl -L -o /usr/local/bin/docker-containerd https://master.dockerproject.org/linux/x86_64/docker-containerd \
     && chmod +x /usr/local/bin/docker-containerd
-RUN curl -L -o /usr/local/bin/docker-containerd-shim https://master.dockerproject.org/linux/amd64/docker-containerd-shim \
+RUN curl -L -o /usr/local/bin/docker-containerd-shim https://master.dockerproject.org/linux/x86_64/docker-containerd-shim \
     && chmod +x /usr/local/bin/docker-containerd-shim
-RUN curl -L -o /usr/local/bin/docker-proxy https://master.dockerproject.org/linux/amd64/docker-proxy \
+RUN curl -L -o /usr/local/bin/docker-proxy https://master.dockerproject.org/linux/x86_64/docker-proxy \
     && chmod +x /usr/local/bin/docker-proxy
 
 RUN curl -L -o /dind https://raw.githubusercontent.com/docker/docker/master/hack/dind \
